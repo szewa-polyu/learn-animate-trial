@@ -1,0 +1,68 @@
+/* https://www.w3schools.com/howto/howto_css_shapes.asp */
+/* https://www.w3schools.com/css/css3_animations.asp */
+
+html, body, #root, #main {
+    height: 100%;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+.clock-frame {
+    background-color: brown;
+    position: relative;
+}
+
+.clock-body {
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.clock-hands-container {
+    position: relative;
+    height: 100%;
+}
+
+.clock-hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+
+    transform-origin: center bottom;
+}
+
+.clock-hand:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    transform-origin: center bottom;
+}
+
+.hour-hand:after {    
+    background-color: blue;
+    
+    animation: clock-hand 86400s infinite linear
+}
+
+.minute-hand:after {    
+    background-color: green;
+    
+    animation: clock-hand 3600s infinite linear
+}
+
+.second-hand:after {
+    background-color: red;
+    
+    animation: clock-hand 60s infinite linear
+}
+
+@keyframes clock-hand {
+    from {transform: rotate(0DEG);}
+    to {transform: rotate(360DEG);}
+}
