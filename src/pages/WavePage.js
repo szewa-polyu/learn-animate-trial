@@ -23,10 +23,11 @@ class WavePage extends Component {
         this.wavingFunc = Math.sin;
         this.waveMoveDirection = 1;  // plus / minus 1
         this.waveParticleSize = 5;
+        this.timeStampMultiplier = 0.001;
     }
 
     componentDidMount() {
-        this.draw();
+        this.draw(0);
     }
 
     componentWillUnmount() {
@@ -42,11 +43,11 @@ class WavePage extends Component {
                 
         for (let i = 0; i < this.numberOfPoints; i++) {
             const x = i / this.numberOfPoints;
-            const y = this.calculateWaveDisplacement(x, timeStamp);
+            const y = this.calculateWaveDisplacement(x, timeStamp * this.timeStampMultiplier);    
             
             this.drawWaveParticle(ctx, canvas.width * x, canvas.height * 0.5 + canvas.height * y, this.waveParticleSize);
-        }        
-
+        }
+        
         this.animationFrameHandle = requestAnimationFrame(this.draw);                
     }
 
@@ -54,7 +55,7 @@ class WavePage extends Component {
         cancelAnimationFrame(this.animationFrameHandle);
     }
 
-    calculateWaveDisplacement(x, t) {        
+    calculateWaveDisplacement(x, t) {
         return this.amplitudeMultiplier * this.wavingFunc(this.spatialFreq * x + this.waveMoveDirection * this.temporalFreq * t);
     }
     
