@@ -19,7 +19,7 @@ class WavePage extends Component {
         this.spatialFreq = 10;
         this.temporalFreq = 1;
         this.numberOfPoints = 200;
-        this.amplitudeMultiplier = 0.5;
+        this.amplitudeMultiplier = 1;
         this.wavingFunc = Math.sin;
         this.waveMoveDirection = 1;  // plus / minus 1
         this.waveParticleSize = 5;
@@ -27,7 +27,7 @@ class WavePage extends Component {
     }
 
     componentDidMount() {
-        this.draw(0);
+        this.draw();
     }
 
     componentWillUnmount() {
@@ -35,7 +35,7 @@ class WavePage extends Component {
     }
 
     // https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame#Notes
-    draw(timeStamp) {
+    draw(timeStamp = 0) {
         const canvas = this.canvasRef.current;
         const ctx = canvas.getContext('2d');
 
@@ -45,7 +45,7 @@ class WavePage extends Component {
             const x = i / this.numberOfPoints;
             const y = this.calculateWaveDisplacement(x, timeStamp * this.timeStampMultiplier);    
             
-            this.drawWaveParticle(ctx, canvas.width * x, canvas.height * 0.5 + canvas.height * y, this.waveParticleSize);
+            this.drawWaveParticle(ctx, canvas.width * x, canvas.height * 0.5 * (1 + y), this.waveParticleSize);
         }
         
         this.animationFrameHandle = requestAnimationFrame(this.draw);                

@@ -19,7 +19,7 @@ class HowToJsHtmlAnimationPage extends Component {
     }
 
     // https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame#Notes
-    step(timeStamp) {
+    step(timeStamp = 0) {
         // stopping case  
         if (this.state.animationPos === this.animationStopPos) {
 
