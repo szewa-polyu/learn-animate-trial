@@ -29,6 +29,12 @@ function Ball(r, p, v, angularSpeed, scaleChangePeriod, imgUrl) {
 	this.angleRotated = 0;
 	this.angularSpeed = angularSpeed;
 
+	this.maxScaleUpFactor = 1.05;
+	this.minScaleDownFactor = 1 / this.maxScaleUpFactor;
+	
+	this.scaleUpFactor = this.maxScaleUpFactor;
+	this.scaleDownFactor = this.minScaleDownFactor;
+
 	this.scaleChangePeriod = scaleChangePeriod;
 	this.scaleChangeDirectionIndicator = 1;  // 1 or -1
 
@@ -80,22 +86,28 @@ Ball.prototype = {
 		});
 
 		// Important
+		// rotation of raster
 		// rotation damping
 		const rotationDampFactor = 0.999;
 		this.angularSpeed *= rotationDampFactor;
 		this.angleRotated += this.angularSpeed;
 
 		// Important
+		// scaling of raster
 		// oscillating scale
-		const scaleIncreaseFactor = 1.01;
-		const scaleDecreaseFactor = 0.99;
-		const scaleFactor = this.scaleChangeDirectionIndicator > 0 ? scaleIncreaseFactor : scaleDecreaseFactor;
+		this.scaleUpFactor = 1 + (this.scaleUpFactor - 1) * 0.99;
+		this.scaleDownFactor = 1 - (1 - this.scaleDownFactor) * 0.99;
+		const scaleFactor = this.scaleChangeDirectionIndicator > 0 ? this.scaleUpFactor : this.scaleDownFactor;
 		if (this.counter % this.scaleChangePeriod === 0) {
 			this.scaleChangeDirectionIndicator *= -1;
+			this.scaleUpFactor = this.maxScaleUpFactor;
+			this.scaleDownFactor = this.minScaleDownFactor;
 		}
 
+		// set position, rotation and scale of raster
 		this.raster.position = this.point;
-		this.raster.rotate(this.angleRotated);		
+		this.raster.rotate(this.angleRotated);
+		// Important: new scale = current scale * scale factor (having damping effect by default)		
 		this.raster.scale(scaleFactor);
 
 		this.updateShape();		
