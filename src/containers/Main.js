@@ -11,6 +11,7 @@ import './Main.css';
 const AsynchHowToJsHtmlAnimationPage = asyncLoadingComponent(() => import('pages/HowToJsHtmlAnimationPage'));
 const AsyncClockPage = asyncLoadingComponent(() => import('pages/ClockPage'));
 const AsyncWavePage = asyncLoadingComponent(() => import('pages/WavePage'));
+const AsyncPaperJsCandyCrushPage = asyncLoadingComponent(() => import('pages/PaperJsCandyCrushPage'));
 
 
 class Main extends Component {
@@ -21,6 +22,7 @@ class Main extends Component {
                     <Route exact path={routes.howToJsHtmlAnimation} component={AsynchHowToJsHtmlAnimationPage} />
                     <Route exact path={routes.clock} component={AsyncClockPage} />
                     <Route exact path={routes.wave} component={AsyncWavePage} />
+                    <Route exact path={routes.paperJsCandyCrush} component={AsyncPaperJsCandyCrushPage} />
                     <Route component={AsynchHowToJsHtmlAnimationPage} />
                 </Switch>
             </main>
