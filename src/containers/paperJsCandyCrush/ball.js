@@ -3,7 +3,7 @@
 import paper, { Path, Point, Raster } from 'paper';
 
 
-function Ball(r, p, v, angularSpeed, scaleChangePeriod, imgUrl) {
+function Ball(r, p, v, angularSpeed, scaleChangeSpeed, scaleChangeAmplitude, imgUrl) {
 	this.radius = r;
 	this.point = p;
 	this.vector = v;
@@ -28,15 +28,9 @@ function Ball(r, p, v, angularSpeed, scaleChangePeriod, imgUrl) {
 
 	this.angleRotated = 0;
 	this.angularSpeed = angularSpeed;
-
-	this.maxScaleUpFactor = 1.05;
-	this.minScaleDownFactor = 1 / this.maxScaleUpFactor;
 	
-	this.scaleUpFactor = this.maxScaleUpFactor;
-	this.scaleDownFactor = this.minScaleDownFactor;
-
-	this.scaleChangePeriod = scaleChangePeriod;
-	this.scaleChangeDirectionIndicator = 1;  // 1 or -1
+	this.sizeChangeSpeed = scaleChangeSpeed;
+	this.scaleChangeAmplitude = scaleChangeAmplitude;
 
 	this.raster = new Raster(imgUrl);
 	this.raster.position = p;
@@ -73,7 +67,10 @@ Ball.prototype = {
 		
 		// Important
 		// vector damping
-		const vectorDampFactor = 0.999;
+		// if 0 < vectorDampFactor < 1,
+		// then the balls will eventually be stationary
+		//const vectorDampFactor = -1 + 2 * Math.random();
+		const vectorDampFactor = 1;
 		this.vector = new Point({
 			x: this.vector.x * vectorDampFactor,
 			y: this.vector.y * vectorDampFactor 
@@ -91,24 +88,19 @@ Ball.prototype = {
 		const rotationDampFactor = 0.999;
 		this.angularSpeed *= rotationDampFactor;
 		this.angleRotated += this.angularSpeed;
-
-		// Important
-		// scaling of raster
-		// oscillating scale
-		this.scaleUpFactor = 1 + (this.scaleUpFactor - 1) * 0.99;
-		this.scaleDownFactor = 1 - (1 - this.scaleDownFactor) * 0.99;
-		const scaleFactor = this.scaleChangeDirectionIndicator > 0 ? this.scaleUpFactor : this.scaleDownFactor;
-		if (this.counter % this.scaleChangePeriod === 0) {
-			this.scaleChangeDirectionIndicator *= -1;
-			this.scaleUpFactor = this.maxScaleUpFactor;
-			this.scaleDownFactor = this.minScaleDownFactor;
-		}
-
+		
 		// set position, rotation and scale of raster
 		this.raster.position = this.point;
 		this.raster.rotate(this.angleRotated);
-		// Important: new scale = current scale * scale factor (having damping effect by default)		
-		this.raster.scale(scaleFactor);
+		// Important: new scale = current scale * scale factor (having damping effect by default)
+		
+		// TODO:
+		//this.raster.scale(scaleFactor);
+		const newScale = 1 + this.scaleChangeAmplitude * Math.sin(this.sizeChangeSpeed * this.counter);
+		this.raster.scaling = new Point({
+			x: newScale,
+			y: newScale
+		});
 
 		this.updateShape();		
 

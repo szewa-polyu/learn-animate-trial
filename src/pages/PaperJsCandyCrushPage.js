@@ -4,7 +4,7 @@ import paper, { Point } from 'paper';
 import Ball from 'containers/paperJsCandyCrush/ball';
 
 import { getAbsoluteUrlFromRelativeUrl } from 'utils/setStaticResourcesPath';
-import { getRandomArbitrary, getRandomIntInclusive } from 'utils/math/random';
+import { getRandomArbitrary } from 'utils/math/random';
 
 import './PaperJsCandyCrushPage.css';
 
@@ -71,8 +71,9 @@ class PaperJsCandyCrushPage extends Component {
             });            
             const radius = getRandomArbitrary(60, 120);
             const angularSpeed = getRandomArbitrary(-0.01, 0.01);
-            const sizeChangePeriod = getRandomIntInclusive(50, 100);
-            balls.push(new Ball(radius, position, vector, angularSpeed, sizeChangePeriod, this.ballImgUrl));
+            const sizeChangeSpeed = getRandomArbitrary(0.02, 0.08);
+            const sizeChangeAmplitude = getRandomArbitrary(0.9, 1.1)
+            balls.push(new Ball(radius, position, vector, angularSpeed, sizeChangeSpeed, sizeChangeAmplitude, this.ballImgUrl));
         }
     }
 
