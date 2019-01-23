@@ -1,0 +1,21 @@
+body {
+    margin: 0px;
+    overflow: hidden;
+    font-family: Monospace;
+    text-align: center;
+}
+
+#info {
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    width: 100%;
+}
+
+a { 
+    color: #09f;
+}
+
+#type-status {
+    font-weight: bold;
+}

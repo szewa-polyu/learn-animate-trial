@@ -2,7 +2,9 @@ const routes = {
     howToJsHtmlAnimation: '/HowToJsHtmlAnimation',
     clock: '/Clock',
     wave: '/Wave',
-    paperJsCandyCrush: '/PaperJsCandyCrush'
+    paperJsCandyCrush: '/PaperJsCandyCrush',
+    waterSurface: '/WaterSurface',
+    threeScene: '/ThreeScene'
 };
 
 export default routes;
