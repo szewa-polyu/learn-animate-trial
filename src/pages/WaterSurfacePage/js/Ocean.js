@@ -208,6 +208,9 @@ Ocean.prototype.generateMesh = function () {
 	var geometry = new THREE.PlaneBufferGeometry( this.geometrySize, this.geometrySize, this.geometryResolution, this.geometryResolution );
 
 	geometry.rotateX( - Math.PI / 2 );
+	
+	// to move the plane position
+	// geometry.translate(x, y, z);
 
 	this.oceanMesh = new THREE.Mesh( geometry, this.materialOcean );
 
