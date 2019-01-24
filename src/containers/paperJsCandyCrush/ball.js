@@ -33,8 +33,8 @@ function Ball(r, p, v, angularSpeed, scaleChangeSpeed, scaleChangeAmplitude, img
 	this.sizeChangeSpeed = scaleChangeSpeed;
 	this.scaleChangeAmplitude = scaleChangeAmplitude;
 
-	//this.raster = new Raster(imgUrl);
-	this.raster = new Raster("");
+	this.raster = new Raster(imgUrl);
+	//this.raster = new Raster("");
 	this.raster.position = p;
 
 	this.counter = 0;
