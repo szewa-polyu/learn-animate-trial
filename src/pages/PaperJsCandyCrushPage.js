@@ -14,7 +14,9 @@ class PaperJsCandyCrushPage extends Component {
     constructor(props) {
         super(props);
 
-        this.canvasRef = React.createRef();
+        // ref
+        this.canvas = null;
+        this.setCanvasRef = (element) => this.canvas = element;
 
         this.balls = [];
 
@@ -37,9 +39,8 @@ class PaperJsCandyCrushPage extends Component {
         this.deregisterPaper();
     }
 
-    registerPaper() {
-        const canvas = this.canvasRef.current;
-        paper.setup(canvas);
+    registerPaper() {        
+        paper.setup(this.canvas);
 
         this.initiateBalls(paper.view);
 
@@ -86,6 +87,8 @@ class PaperJsCandyCrushPage extends Component {
                 balls[i].react(balls[j]);
             }
         }
+
+        // note: the advantage of this for loop initialization syntax is that balls.length is evaluated once only
         for (let i = 0, l = balls.length; i < l; i++) {
             balls[i].iterate();
         }
@@ -94,7 +97,7 @@ class PaperJsCandyCrushPage extends Component {
     render() {        
         return (
             <div id="myCanvasContainer">
-                <canvas id="myCanvas" ref={this.canvasRef} />
+                <canvas id="myCanvas" ref={this.setCanvasRef} />
             </div>
         );
     }

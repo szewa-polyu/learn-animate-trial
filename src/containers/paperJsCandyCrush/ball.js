@@ -13,18 +13,19 @@ function Ball(r, p, v, angularSpeed, scaleChangeSpeed, scaleChangeAmplitude, img
 	this.boundOffsetBuff = [];
 	this.sidePoints = [];
 	this.path = new Path({
-		// fillColor: {
-		// 	hue: Math.random() * 360,
-		// 	saturation: 1,
-        //  brightness: 1,            
-		// },
 		fillColor: {
-			hue: 185,
-			saturation: .52,
-			brightness: .71
+			hue: Math.random() * 360,
+			saturation: 1,
+         	brightness: 1,            
 		},
-        blendMode: 'lighter'  // Important: overlap colors during collision 
-	});
+		// fillColor: {
+		// 	hue: 185,
+		// 	saturation: .52,
+		// 	brightness: .71
+		// },
+		//blendMode: 'lighter'  // Important: overlap colors during collision
+		blendMode: 'normal'  // Important: overlap colors during collision
+	});	
 
 	this.angleRotated = 0;
 	this.angularSpeed = angularSpeed;
@@ -32,7 +33,8 @@ function Ball(r, p, v, angularSpeed, scaleChangeSpeed, scaleChangeAmplitude, img
 	this.sizeChangeSpeed = scaleChangeSpeed;
 	this.scaleChangeAmplitude = scaleChangeAmplitude;
 
-	this.raster = new Raster(imgUrl);
+	//this.raster = new Raster(imgUrl);
+	this.raster = new Raster("");
 	this.raster.position = p;
 
 	this.counter = 0;
@@ -49,7 +51,13 @@ function Ball(r, p, v, angularSpeed, scaleChangeSpeed, scaleChangeAmplitude, img
 			angle: 360 / this.numSegment * i,
 			length: displayToCollisionSizeRatio
 		}));
-	}	
+	}
+
+	// http://paperjs.org/tutorials/project-items/working-with-items/#selecting-items
+	this.path.selected = false;
+	// for (let i = 0; i < this.numSegment; i ++) {
+	// 	this.path.segments[i].selected = true;
+	// }
 }
 
 Ball.prototype = {
@@ -121,6 +129,7 @@ Ball.prototype = {
             this.point.y = -this.radius;                
 	},
 
+	
 	updateShape: function() {	
 		const segments = this.path.segments;		
 		for (let i = 0; i < this.numSegment; i ++) {
@@ -177,7 +186,11 @@ Ball.prototype = {
 	},
 
 	getBoundOffset: function(b) {
-		const diff = this.point - b;
+		//const diff = this.point - b;		
+		const diff = new Point({
+			x: this.point.x - b.x,
+			y: this.point.y - b.y
+		});		
 		const angle = (diff.angle + 180) % 360;
 		return this.boundOffset[Math.floor(angle / 360 * this.boundOffset.length)];
 	},
@@ -203,8 +216,9 @@ Ball.prototype = {
 	},
 
 	updateBounds: function() {
-		for (let i = 0; i < this.numSegment; i++)
+		for (let i = 0; i < this.numSegment; i++) {
 			this.boundOffset[i] = this.boundOffsetBuff[i];
+		}
 	}
 };
 
