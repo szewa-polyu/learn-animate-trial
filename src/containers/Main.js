@@ -14,6 +14,7 @@ const AsyncWavePage = asyncLoadingComponent(() => import('pages/WavePage'));
 const AsyncPaperJsCandyCrushPage = asyncLoadingComponent(() => import('pages/PaperJsCandyCrushPage'));
 const AsyncWaterSurfacePage = asyncLoadingComponent(() => import('pages/WaterSurfacePage'));
 const AsyncThreeScenePage = asyncLoadingComponent(() => import('pages/ThreeScenePage'));
+const AsyncAFrameWaterTankPage = asyncLoadingComponent(() => import('pages/AFrameWaterTankPage'));
 
 
 class Main extends Component {

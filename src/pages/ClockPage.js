@@ -47,7 +47,7 @@ function LowerCresentMoon(props) {
     );
 }
 
-class Clock extends Component {    
+class Clock extends Component {
     render() {
         const now = new Date();
         const hours = now.getHours();
