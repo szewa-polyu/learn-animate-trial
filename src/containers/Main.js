@@ -15,6 +15,7 @@ const AsyncPaperJsCandyCrushPage = asyncLoadingComponent(() => import('pages/Pap
 const AsyncWaterSurfacePage = asyncLoadingComponent(() => import('pages/WaterSurfacePage'));
 const AsyncThreeScenePage = asyncLoadingComponent(() => import('pages/ThreeScenePage'));
 const AsyncAFrameWaterTankPage = asyncLoadingComponent(() => import('pages/AFrameWaterTankPage'));
+const AsyncAmmoWaterPage = asyncLoadingComponent(() => import('pages/AmmoWaterPage'));
 
 
 class Main extends Component {
@@ -28,6 +29,8 @@ class Main extends Component {
                     <Route exact path={routes.paperJsCandyCrush} component={AsyncPaperJsCandyCrushPage} />
                     <Route exact path={routes.waterSurface} component={AsyncWaterSurfacePage} />
                     <Route exact path={routes.threeScene} component={AsyncThreeScenePage} />
+                    <Route exact path={routes.aFrameWaterTank} component={AsyncAFrameWaterTankPage} />
+                    <Route exact path={routes.ammoWater} component={AsyncAmmoWaterPage} />
                     <Route component={AsynchHowToJsHtmlAnimationPage} />
                 </Switch>
             </main>

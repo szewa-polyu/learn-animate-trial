@@ -787,6 +787,11 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
+"@nfactorial/ammo_node@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@nfactorial/ammo_node/-/ammo_node-0.0.1.tgz#2f0cd6c796308acb4fa8e3df9b39ebb4f8baddd2"
+  integrity sha1-LwzWx5YwistPqOPfmznrtPi63dI=
+
 "@nodelib/fs.stat@^1.0.1":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.2.tgz#54c5a964462be3d4d78af631363c18d6fa91ac26"
@@ -1041,6 +1046,11 @@ address@1.0.3, address@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/address/-/address-1.0.3.tgz#b5f50631f8d6cec8bd20c963963afb55e06cbce9"
   integrity sha512-z55ocwKBRLryBs394Sm3ushTtBeg6VAeuku7utSoSnsJKvKcnXFIyC6vh27n3rXyxSgkJBBCAvyOn7gSUcTYjg==
+
+aframe-gif-shader@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/aframe-gif-shader/-/aframe-gif-shader-0.2.0.tgz#14b1f78b2b0cfb53649e46cf3c135a091fd5b4db"
+  integrity sha1-FLH3iysM+1NknkbPPBNaCR/VtNs=
 
 aframe@^0.8.2:
   version "0.8.2"
@@ -2842,7 +2852,7 @@ debug@^3.1.0:
   dependencies:
     ms "^2.1.1"
 
-"debug@github:ngokevin/debug#noTimestamp":
+debug@ngokevin/debug#noTimestamp:
   version "2.2.0"
   resolved "https://codeload.github.com/ngokevin/debug/tar.gz/ef5f8e66d49ce8bc64c6f282c15f8b7164409e3a"
 
@@ -3096,7 +3106,7 @@ doctrine@^2.1.0:
   dependencies:
     esutils "^2.0.2"
 
-"document-register-element@github:dmarcos/document-register-element#8ccc532b7":
+document-register-element@dmarcos/document-register-element#8ccc532b7:
   version "0.5.4"
   resolved "https://codeload.github.com/dmarcos/document-register-element/tar.gz/8ccc532b7f3744be954574caf3072a5fd260ca90"
 

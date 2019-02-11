@@ -5,7 +5,8 @@ const routes = {
     paperJsCandyCrush: '/PaperJsCandyCrush',
     waterSurface: '/WaterSurface',
     threeScene: '/ThreeScene',
-    aFrameWaterTank: 'AFrameWaterTank'
+    aFrameWaterTank: '/AFrameWaterTank',
+    ammoWater: '/AmmoWater'
 };
 
 export default routes;
